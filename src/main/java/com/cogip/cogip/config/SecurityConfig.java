@@ -30,6 +30,9 @@ public class SecurityConfig {
                         .ignoringRequestMatchers(
                                 "/h2-console/**",
                                 "/register",
+                                "invoice",
+                                "contact",
+                                "company",
                                 "/error"
                         )
                 )
