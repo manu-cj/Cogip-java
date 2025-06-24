@@ -1,13 +1,12 @@
 package com.cogip.cogip.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
@@ -15,6 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Entity
 @Table(name = "invoice")
+@Builder
 public class Invoice {
     //les factures doivent être répertoriées avec les informations suivantes :
     // numéro, date, société liée à la facture, type de société ( fournisseur ou client ), contact lié à la facture
@@ -22,17 +22,16 @@ public class Invoice {
     @GeneratedValue
     private UUID id;
     private long number;
-    private java.time.LocalDate date;
-    private User user;
+    private LocalDateTime date;
 
     // Société liée à la facture
-    @jakarta.persistence.ManyToOne
+    @ManyToOne
     private Company company;
 
     // Type de société (FOURNISSEUR ou CLIENT)
-    private String typeSociete;
+    private String companyType;
 
     // Contact lié à la facture
-    @jakarta.persistence.ManyToOne
+    @ManyToOne
     private Contact contact;
 }
