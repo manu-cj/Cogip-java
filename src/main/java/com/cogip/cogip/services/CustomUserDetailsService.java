@@ -1,5 +1,5 @@
-package com.auth_service.auth_service.services;
-import com.auth_service.auth_service.repository.UserRepository;
+package com.cogip.cogip.services;
+import com.cogip.cogip.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -20,7 +20,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        com.auth_service.auth_service.models.User appUser = userRepository.findByUsername(username)
+        com.cogip.cogip.models.User appUser = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
         Collection<? extends GrantedAuthority> authorities = appUser.getRoles().stream()

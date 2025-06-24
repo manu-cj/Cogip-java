@@ -1,4 +1,4 @@
-package com.auth_service.auth_service.models;
+package com.cogip.cogip.models;
 
 import jakarta.persistence.*;
 import lombok.*;

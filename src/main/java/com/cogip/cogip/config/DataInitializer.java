@@ -1,9 +1,9 @@
-package com.auth_service.auth_service.config;
+package com.cogip.cogip.config;
 
-import com.auth_service.auth_service.models.Role;
-import com.auth_service.auth_service.models.User;
-import com.auth_service.auth_service.repository.RoleRepository;
-import com.auth_service.auth_service.repository.UserRepository;
+import com.cogip.cogip.models.Role;
+import com.cogip.cogip.models.User;
+import com.cogip.cogip.repository.RoleRepository;
+import com.cogip.cogip.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

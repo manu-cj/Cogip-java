@@ -1,10 +1,10 @@
-package com.auth_service.auth_service.mappers;
+package com.cogip.cogip.mappers;
 
 
-import com.auth_service.auth_service.dto.UserRequestDTO;
-import com.auth_service.auth_service.dto.UserResponseDTO;
-import com.auth_service.auth_service.models.Role;
-import com.auth_service.auth_service.models.User;
+import com.cogip.cogip.dto.UserRequestDTO;
+import com.cogip.cogip.dto.UserResponseDTO;
+import com.cogip.cogip.models.Role;
+import com.cogip.cogip.models.User;
 import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;

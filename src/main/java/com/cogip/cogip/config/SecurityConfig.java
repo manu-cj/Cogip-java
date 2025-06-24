@@ -1,6 +1,6 @@
-package com.auth_service.auth_service.config;
+package com.cogip.cogip.config;
 
-import com.auth_service.auth_service.services.CustomUserDetailsService;
+import com.cogip.cogip.services.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,6 +1,6 @@
-package com.auth_service.auth_service.repository;
+package com.cogip.cogip.repository;
 
-import com.auth_service.auth_service.models.Role;
+import com.cogip.cogip.models.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,12 +1,12 @@
-package com.auth_service.auth_service.services;
+package com.cogip.cogip.services;
 
-import com.auth_service.auth_service.dto.UserRequestDTO;
-import com.auth_service.auth_service.dto.UserResponseDTO;
-import com.auth_service.auth_service.mappers.UserMapper;
-import com.auth_service.auth_service.models.Role;
-import com.auth_service.auth_service.models.User;
-import com.auth_service.auth_service.repository.RoleRepository;
-import com.auth_service.auth_service.repository.UserRepository;
+import com.cogip.cogip.dto.UserRequestDTO;
+import com.cogip.cogip.dto.UserResponseDTO;
+import com.cogip.cogip.mappers.UserMapper;
+import com.cogip.cogip.models.Role;
+import com.cogip.cogip.models.User;
+import com.cogip.cogip.repository.RoleRepository;
+import com.cogip.cogip.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

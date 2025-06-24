@@ -1,4 +1,4 @@
-package com.auth_service.auth_service.dto;
+package com.cogip.cogip.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
