@@ -23,6 +23,7 @@ public class Invoice {
     private UUID id;
     private long number;
     private java.time.LocalDate date;
+    private User user;
 
     // Société liée à la facture
     @jakarta.persistence.ManyToOne

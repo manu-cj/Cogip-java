@@ -21,6 +21,7 @@ public class Company {
     private UUID id;
     private String companyName;
     private String tvaNumber;
+    private User user;
 
     @OneToMany(mappedBy = "company")
     private List<Invoice> invoices;
