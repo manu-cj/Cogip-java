@@ -10,6 +10,8 @@ import com.cogip.cogip.repository.CompanyRepository;
 import com.cogip.cogip.repository.ContactRepository;
 import com.cogip.cogip.repository.InvoiceRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,12 +30,8 @@ public class InvoiceService {
         Company company = companyRepository.findByName(dto.getCompanyName())
                 .orElseThrow(() -> new EntityNotFoundException("Company not found: " + dto.getCompanyName()));
 
-
-
-        Contact contact = contactRepository.findAll().stream()
-                .filter(c -> c.getFirstName().equalsIgnoreCase(dto.getContactFirstName()) && c.getLastName().equalsIgnoreCase(dto.getContactLastName()))
-                .findFirst()
-                .orElseThrow(() -> new EntityNotFoundException("Contact not found: " + dto.getContactFirstName() + " " + dto.getContactLastName()));
+        Contact contact = contactRepository.findById(dto.getContactId())
+                .orElseThrow(() -> new EntityNotFoundException("Contact not found"));
 
         Invoice invoice = InvoiceMapper.toEntity(dto, company, contact);
         Invoice saved = invoiceRepository.save(invoice);
@@ -45,5 +43,39 @@ public class InvoiceService {
         return invoiceRepository.findAll().stream()
                 .map(InvoiceMapper::toDTO)
                 .toList();
+    }
+
+    @Transactional
+    public InvoiceDTO updateInvoiceById(UUID id, InvoiceDTO dto) {
+        Invoice invoice = invoiceRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Invoice not found"));
+
+        Company company = companyRepository.findByName(dto.getCompanyName())
+                .orElseThrow(() -> new EntityNotFoundException("Company not found"));
+
+        Contact contact = contactRepository.findById(dto.getContactId())
+                .orElseThrow(() -> new EntityNotFoundException("Contact not found"));
+
+        invoice.setNumber(dto.getNumber());
+        invoice.setDate(dto.getDate());
+        invoice.setCompany(company);
+        invoice.setContact(contact);
+
+        Invoice updated = invoiceRepository.save(invoice);
+        return InvoiceMapper.toDTO(updated);
+    }
+
+    @Transactional
+    public InvoiceDTO delete(UUID id) {
+        Invoice invoice = invoiceRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Invoice not found"));
+
+        invoiceRepository.deleteById(id);
+        return InvoiceMapper.toDTO(invoice);
+    }
+
+    public Page<InvoiceDTO> getByPage(Pageable pageable) {
+        return invoiceRepository.findAll(pageable)
+                .map(InvoiceMapper::toDTO);
     }
 }

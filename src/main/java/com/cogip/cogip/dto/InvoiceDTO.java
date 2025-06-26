@@ -25,6 +25,7 @@ public class InvoiceDTO {
     private CompanyType companyType;
     private String contactFirstName;
     private String contactLastName;
+    private UUID contactId;
 
 
 }

@@ -18,6 +18,7 @@ public class InvoiceMapper {
                 .companyType(invoice.getCompany().getType())
                 .contactFirstName(invoice.getContact().getFirstName())
                 .contactLastName(invoice.getContact().getLastName())
+                .contactId(invoice.getContact().getId())
                 .build();
     }
 

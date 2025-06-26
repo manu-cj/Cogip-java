@@ -1,9 +1,12 @@
 package com.cogip.cogip.controller;
 
+import com.cogip.cogip.dto.CompanyDTO;
 import com.cogip.cogip.dto.ContactDTO;
 import com.cogip.cogip.services.ContactService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,11 +19,12 @@ import java.util.UUID;
 public class ContactController {
     private final ContactService contactService;
 
+
     @GetMapping
-    public ResponseEntity<?> getAll() {
-        List<ContactDTO> contacts = contactService.getAll();
+    public ResponseEntity<?> getAllByPage(Pageable pageable) {
+        Page<ContactDTO> contacts = contactService.getByPage(pageable);
         if (contacts.isEmpty()) {
-            return ResponseEntity.status(404).body("Contact not found");
+            return ResponseEntity.status(404).body("contacts not found");
         }
         return ResponseEntity.ok(contacts);
     }
@@ -37,8 +41,15 @@ public class ContactController {
         return ResponseEntity.ok(updated);
     }
 
-    @PutMapping("/test")
-    public ResponseEntity<String> test() {
-        return ResponseEntity.ok("Ça fonctionne !");
+    @PutMapping("/{id}")
+    public ResponseEntity<?> update(@Valid @PathVariable UUID id, @RequestBody ContactDTO dto) {
+        ContactDTO updated = contactService.updateContactById(id, dto);
+        return ResponseEntity.ok(updated);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleted(@PathVariable UUID id) {
+        ContactDTO deleted = contactService.delete(id);
+        return ResponseEntity.ok("Company deleted " + deleted);
     }
 }
