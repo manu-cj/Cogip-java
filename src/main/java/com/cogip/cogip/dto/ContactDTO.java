@@ -16,21 +16,10 @@ import java.util.UUID;
 @Builder
 public class ContactDTO {
     private UUID id;
-    @NotBlank
-    private String firstname;
-
-    @NotBlank
-    private String lastname;
-
-    @Email
+    private String firstName;
+    private String lastName;
     private String email;
-
-    private CompanyDTO companyDTO;
-
-    private List<InvoiceDTO> invoiceDTOS;
-
-
-
-
-
+    private String companyName;
+    private List<InvoiceSummaryDTO> invoices;
 }
+

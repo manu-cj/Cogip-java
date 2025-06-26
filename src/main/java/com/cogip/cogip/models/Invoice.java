@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -21,17 +22,19 @@ public class Invoice {
     @Id
     @GeneratedValue
     private UUID id;
-    private long number;
-    private LocalDateTime date;
+    private String number;
 
-    // Société liée à la facture
+    private LocalDate date;
+
     @ManyToOne
+    @JoinColumn(name = "company_id")
     private Company company;
 
-    // Type de société (FOURNISSEUR ou CLIENT)
-    private String companyType;
-
-    // Contact lié à la facture
     @ManyToOne
+    @JoinColumn(name = "contact_id")
     private Contact contact;
+
+    // Optionnel si le type ne peut pas être déduit de company
+    @Enumerated(EnumType.STRING)
+    private CompanyType type;
 }
