@@ -30,9 +30,9 @@ public class SecurityConfig {
                         .ignoringRequestMatchers(
                                 "/h2-console/**",
                                 "/register",
-                                "invoice",
-                                "contact",
-                                "company",
+                                "/invoice/**",
+                                "/contacts/**",
+                                "/company/**",
                                 "/error"
                         )
                 )
@@ -43,7 +43,11 @@ public class SecurityConfig {
                         .requestMatchers("/register").permitAll()
                         .requestMatchers("/").permitAll()
                         .requestMatchers("/error").permitAll()
+                        .requestMatchers("/invoice/**").permitAll()
+                        .requestMatchers("/company/**").permitAll()
+                        .requestMatchers("/contacts/**").permitAll()
                         .requestMatchers("/h2-console/**").permitAll()
+                        .requestMatchers("/test/**").permitAll()
                         .requestMatchers("/public").hasAnyRole("USER", "ADMIN")
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
