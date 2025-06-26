@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,15 +22,14 @@ public class Contact {
     @Id
     @GeneratedValue
     private UUID id;
-    private String firstname;
-    private String lastname;
+    private String firstName;
+    private String lastName;
     private String email;
 
-    // Relation vers la société où travaille la personne
     @ManyToOne
+    @JoinColumn(name = "company_id")
     private Company company;
 
-    // Liste des factures liées à ce contact
-    @OneToMany(mappedBy = "contact")
-    private List<Invoice> invoices;
+    @OneToMany(mappedBy = "contact", cascade = CascadeType.ALL)
+    private List<Invoice> invoices = new ArrayList<>();
 }

@@ -15,6 +15,7 @@ import java.util.List;
 public class CompanyService {
     private final CompanyRepository companyRepository;
 
+
     @Transactional
     public CompanyDTO create(CompanyDTO dto) {
         Company company = CompanyMapper.toEntity(dto);
@@ -27,4 +28,5 @@ public class CompanyService {
                 .map(CompanyMapper::toDTO)
                 .toList();
     }
+
 }

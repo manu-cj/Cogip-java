@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,12 +22,17 @@ public class Company {
     @Id
     @GeneratedValue
     private UUID id;
-    private String companyName;
-    private String tvaNumber;
+    private String name;
 
-    @OneToMany(mappedBy = "company")
-    private List<Invoice> invoices;
+    @Column(unique = true)
+    private String vatNumber;
 
-    @OneToMany(mappedBy = "company")
-    private List<Contact> contact;
+    @Enumerated(EnumType.STRING)
+    private CompanyType type; // CLIENT or PROVIDER
+
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
+    private List<Contact> contacts = new ArrayList<>();
+
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
+    private List<Invoice> invoices = new ArrayList<>();
 }

@@ -5,18 +5,17 @@ import com.cogip.cogip.services.InvoiceService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("invoice")
+@RequestMapping("/invoice")
 @RequiredArgsConstructor
 public class InvoiceController {
     private final InvoiceService invoiceService;
 
+    @GetMapping
     public ResponseEntity<?> getAll() {
         List<InvoiceDTO> invoices = invoiceService.getAll();
         if (invoices.isEmpty()) {
@@ -25,8 +24,9 @@ public class InvoiceController {
         return ResponseEntity.ok(invoices);
     }
 
+    @PostMapping
     public ResponseEntity<?> add(@Valid @RequestBody InvoiceDTO dto) {
-        InvoiceDTO created = invoiceService.create(dto);
+        InvoiceDTO created = invoiceService.createInvoice(dto);
         return ResponseEntity.ok(created);
     }
 }

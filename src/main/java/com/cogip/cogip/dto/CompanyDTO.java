@@ -1,5 +1,6 @@
 package com.cogip.cogip.dto;
 
+import com.cogip.cogip.models.CompanyType;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,14 +15,11 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 public class CompanyDTO {
-    private UUID id;
-    @NotBlank
-    private String companyName;
+        private UUID id;
+        private String name;
+        private String vatNumber;
+        private CompanyType type;
+        private List<InvoiceSummaryDTO> invoices;
+        private List<ContactSummaryDTO> contacts;
 
-    @NotBlank
-    private String tvaNumber;
-
-    private List<InvoiceDTO> invoiceDTOS;
-
-    private List<ContactDTO> contactDTOS;
 }
