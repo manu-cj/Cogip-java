@@ -27,8 +27,20 @@ public class CompanyService {
         return CompanyMapper.toDTO(saved);
     }
 
+    public CompanyDTO getById(UUID id) {
+        Company company = companyRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Company not found"));
+
+        return CompanyMapper.toDTO(company);
+    }
+
     public Page<CompanyDTO> getByPage(Pageable pageable) {
         return companyRepository.findAll(pageable)
+                .map(CompanyMapper::toDTO);
+    }
+
+    public Page<CompanyDTO> getByNameStartingWith(String name, Pageable pageable) {
+        return companyRepository.findByNameStartingWith(name, pageable)
                 .map(CompanyMapper::toDTO);
     }
 

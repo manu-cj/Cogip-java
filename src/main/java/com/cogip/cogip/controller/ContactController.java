@@ -29,6 +29,15 @@ public class ContactController {
         return ResponseEntity.ok(contacts);
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<?> getByFirstnameOrLastnameStartingWith(@RequestParam String firstname, @RequestParam String lastname, Pageable pageable) {
+        Page<ContactDTO> contacts = contactService.getByFistNameOrLastNameStartingWith(firstname, lastname, pageable);
+        if (contacts.isEmpty()) {
+            return ResponseEntity.status(404).body("Contact not found");
+        }
+        return ResponseEntity.ok(contacts);
+    }
+
     @PostMapping
     public ResponseEntity<?> add(@Valid @RequestBody ContactDTO dto) {
         ContactDTO created = contactService.createContact(dto);
@@ -39,6 +48,17 @@ public class ContactController {
     public ResponseEntity<?> updateCompany(@PathVariable UUID id, @PathVariable UUID companyId) {
         ContactDTO updated = contactService.updateCompany(id, companyId);
         return ResponseEntity.ok(updated);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getById(@PathVariable UUID id){
+        ContactDTO contact = contactService.getById(id);
+
+        if (contact == null) {
+            return ResponseEntity.status(404).body("Contact not exist");
+        }
+
+        return ResponseEntity.ok(contact);
     }
 
     @PutMapping("/{id}")

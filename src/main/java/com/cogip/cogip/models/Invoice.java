@@ -22,6 +22,8 @@ public class Invoice {
     @Id
     @GeneratedValue
     private UUID id;
+
+    @Column(unique = true)
     private String number;
 
     private LocalDate date;
