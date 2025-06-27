@@ -29,11 +29,32 @@ public class CompanyController {
         return ResponseEntity.ok(company);
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<?> getByNameStartingWith(@RequestParam String name, Pageable pageable){
+        Page<CompanyDTO> company = companyService.getByNameStartingWith(name, pageable);
+        if (company.isEmpty()) {
+            return ResponseEntity.status(404).body("company not found");
+        }
+        return ResponseEntity.ok(company);
+    }
+
     @PostMapping
     public ResponseEntity<?> add(@Valid @RequestBody CompanyDTO dto) {
         CompanyDTO created = companyService.create(dto);
         return ResponseEntity.ok(created);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getById(@PathVariable UUID id){
+        CompanyDTO company = companyService.getById(id);
+
+        if (company == null) {
+            return ResponseEntity.status(404).body("Company not exist");
+        }
+
+        return ResponseEntity.ok(company);
+    }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@Valid @PathVariable UUID id, @RequestBody CompanyDTO dto) {

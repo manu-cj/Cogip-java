@@ -23,7 +23,16 @@ public class InvoiceController {
     public ResponseEntity<?> getAllByPage(Pageable pageable) {
         Page<InvoiceDTO> invoices = invoiceService.getByPage(pageable);
         if (invoices.isEmpty()) {
-            return ResponseEntity.status(404).body("invoices not found");
+            return ResponseEntity.status(404).body("Invoice not found");
+        }
+        return ResponseEntity.ok(invoices);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<?> getByNumberStartingWith(String number, Pageable pageable) {
+        Page<InvoiceDTO> invoices = invoiceService.getByNumberStartingWith(number, pageable);
+        if (invoices.isEmpty()) {
+            return ResponseEntity.status(404).body("Invoice not found");
         }
         return ResponseEntity.ok(invoices);
     }
@@ -32,6 +41,15 @@ public class InvoiceController {
     public ResponseEntity<?> add(@Valid @RequestBody InvoiceDTO dto) {
         InvoiceDTO created = invoiceService.createInvoice(dto);
         return ResponseEntity.ok(created);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getById(UUID id) {
+        InvoiceDTO invoice = invoiceService.getById(id);
+        if (invoice == null) {
+            return ResponseEntity.status(404).body("Invoice not found");
+        }
+        return ResponseEntity.ok(invoice);
     }
 
     @PutMapping("/{id}")
