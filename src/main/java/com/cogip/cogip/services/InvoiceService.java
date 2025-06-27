@@ -78,4 +78,16 @@ public class InvoiceService {
         return invoiceRepository.findAll(pageable)
                 .map(InvoiceMapper::toDTO);
     }
+
+    public Page<InvoiceDTO> getByNumberStartingWith(String number, Pageable pageable) {
+        return invoiceRepository.findByNumberStartingWith(number, pageable)
+                .map(InvoiceMapper::toDTO);
+    }
+
+    public InvoiceDTO getById(UUID id) {
+        Invoice invoice = invoiceRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Invoice not found"));
+
+        return InvoiceMapper.toDTO(invoice);
+    }
 }

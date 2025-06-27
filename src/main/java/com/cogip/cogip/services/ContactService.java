@@ -43,6 +43,18 @@ public class ContactService {
                 .map(ContactMapper::toDTO);
     }
 
+    public Page<ContactDTO> getByFistNameOrLastNameStartingWith(String firstname, String lastname, Pageable pageable) {
+        return contactRepository.findByFirstNameStartingWithOrLastNameStartingWith(firstname, lastname, pageable)
+                .map(ContactMapper::toDTO);
+    }
+
+    public ContactDTO getById(UUID id) {
+        Contact contact = contactRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Contact not found"));
+
+        return ContactMapper.toDTO(contact);
+    }
+
     /**
      * Updates the company associated with a contact and all their invoices.
      *
