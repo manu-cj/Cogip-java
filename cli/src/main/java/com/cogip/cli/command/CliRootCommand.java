@@ -8,8 +8,13 @@ import picocli.CommandLine;
         name = "cogip-cli",
         description = "CLI COGIP",
         subcommands = {
+                // Company
                 AddCompanyCommand.class,
-                ListCompanyCommand.class
+                ListCompanyCommand.class,
+
+                // Contact
+                AddContactCommand.class
+
                 // Ajoute ici d'autres commandes, ex: ListCompanyCommand.class
         }
 )
@@ -19,6 +24,8 @@ public class CliRootCommand implements Runnable {
     public AddCompanyCommand addCompanyCommand;
     @Autowired
     public ListCompanyCommand listCompanyCommand;
+    @Autowired
+    public AddContactCommand addContactCommand;
 
     @Override
     public void run() {
