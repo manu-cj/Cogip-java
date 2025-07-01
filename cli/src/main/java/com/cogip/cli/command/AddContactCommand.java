@@ -1,5 +1,6 @@
 package com.cogip.cli.command;
 
+import com.cogip.cli.DTO.ContactRequest;
 import com.cogip.cli.model.Company;
 import com.cogip.cli.model.Contact;
 import com.cogip.cli.service.CompanyService;
@@ -63,8 +64,10 @@ public class AddContactCommand implements Runnable {
                 .firstName(firstName)
                 .lastName(lastName)
                 .email(email)
-                .company(company)
+                .companyName(company.getName())
                 .build();
+
+
         Contact created = contactService.addContact(contact);
         log.info("Contact ajouté : {}", contact);
     }

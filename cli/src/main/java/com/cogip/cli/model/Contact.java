@@ -18,7 +18,7 @@ public class Contact {
     private String firstName;
     private String lastName;
     private String email;
-    private Company company;
+    private String companyName;
     private List<Invoice> invoices;
 
 

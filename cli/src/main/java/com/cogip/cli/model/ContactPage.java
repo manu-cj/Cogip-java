@@ -1,13 +1,36 @@
 package com.cogip.cli.model;
 
-import java.util.List;
+import lombok.Data;
 
+import java.util.List;
+@Data
 public class ContactPage {
     private List<Contact> content;
+    private Pageable pageable;
+    private boolean last;
+    private int totalPages;
+    private int totalElements;
+    private int size;
+    private int number;
+    private Sort sort;
+    private int numberOfElements;
+    private boolean first;
+    private boolean empty;
 
-    public List<Contact> getContent() { return content; }
+    @Data
+    public static class Pageable {
+        private int pageNumber;
+        private int pageSize;
+        private Sort sort;
+        private int offset;
+        private boolean unpaged;
+        private boolean paged;
+    }
 
-    public void setContent(List<Contact> content) {
-        this.content = content;
+    @Data
+    public static class Sort {
+        private boolean empty;
+        private boolean unsorted;
+        private boolean sorted;
     }
 }

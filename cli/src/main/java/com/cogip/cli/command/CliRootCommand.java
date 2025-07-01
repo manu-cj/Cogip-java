@@ -13,7 +13,8 @@ import picocli.CommandLine;
                 ListCompanyCommand.class,
 
                 // Contact
-                AddContactCommand.class
+                AddContactCommand.class,
+                ListContactCommand.class
 
                 // Ajoute ici d'autres commandes, ex: ListCompanyCommand.class
         }
@@ -26,6 +27,8 @@ public class CliRootCommand implements Runnable {
     public ListCompanyCommand listCompanyCommand;
     @Autowired
     public AddContactCommand addContactCommand;
+    @Autowired
+    public ListContactCommand listContactCommand;
 
     @Override
     public void run() {

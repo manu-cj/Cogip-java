@@ -1,5 +1,6 @@
 package com.cogip.cli.service;
 
+import com.cogip.cli.DTO.ContactRequest;
 import com.cogip.cli.model.Contact;
 import com.cogip.cli.model.ContactPage;
 import org.springframework.stereotype.Service;
@@ -23,12 +24,22 @@ public class ContactService {
         }
     }
 
-    public List<Contact> getContact() {
+    public List<Contact> getContact(int page, int size) {
         try {
-            ContactPage page = restTemplate.getForObject(url, ContactPage.class);
-            return page != null ? page.getContent() : List.of();
+            String pagedUrl = url + "?page=" + page + "&size=" + size;
+            ContactPage contactPage = restTemplate.getForObject(pagedUrl, ContactPage.class);
+            return contactPage != null ? contactPage.getContent() : List.of();
         } catch (HttpClientErrorException.NotFound e) {
             return List.of();
+        }
+    }
+
+    public ContactPage getContactPage(int page, int size) {
+        try {
+            String pagedUrl = url + "?page=" + page + "&size=" + size;
+            return restTemplate.getForObject(pagedUrl, ContactPage.class);
+        } catch (HttpClientErrorException.NotFound e) {
+            return null;
         }
     }
 }

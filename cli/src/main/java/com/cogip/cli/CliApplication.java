@@ -27,6 +27,7 @@ public class CliApplication {
 			System.out.println("1. add-company");
 			System.out.println("2. list-company");
 			System.out.println("3. add-contact");
+			System.out.println("4. list-contact");
 			// Ajoute ici d'autres sous-commandes si besoin
 			System.out.println("0. quit");
 			System.out.print("Choisissez une sous-commande : ");
