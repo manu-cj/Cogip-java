@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import picocli.CommandLine;
 
-import java.io.PrintWriter;
 import java.util.List;
 import java.util.Scanner;
 

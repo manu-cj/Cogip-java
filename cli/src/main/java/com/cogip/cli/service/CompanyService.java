@@ -19,7 +19,6 @@ public class CompanyService {
             CompanyPage page = restTemplate.getForObject(url, CompanyPage.class);
             return page != null ? page.getContent() : List.of();
         } catch (HttpClientErrorException.NotFound e) {
-            // Retourne un tableau vide si 404
             return List.of();
         }
     }
