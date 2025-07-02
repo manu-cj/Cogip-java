@@ -23,14 +23,15 @@ public class CliApplication {
 		Scanner scanner = new Scanner(System.in);
 
 		while (true) {
-			System.out.println("Sous-commandes disponibles :");
-			System.out.println("1. add-company");
-			System.out.println("2. list-company");
-			System.out.println("3. add-contact");
-			System.out.println("4. list-contact");
-			// Ajoute ici d'autres sous-commandes si besoin
-			System.out.println("0. quit");
-			System.out.print("Choisissez une sous-commande : ");
+			System.out.println(CommandLine.Help.Ansi.ON.string("@|yellow ==============================|@"));
+			System.out.println(CommandLine.Help.Ansi.ON.string("@|yellow           COGIP CLI |@"));
+			System.out.println(CommandLine.Help.Ansi.ON.string("@|yellow ==============================|@"));
+			System.out.println(CommandLine.Help.Ansi.ON.string("@|green 1.|@ @|blue add-company |@"));
+			System.out.println(CommandLine.Help.Ansi.ON.string("@|green 2.|@ @|blue list-company |@"));
+			System.out.println(CommandLine.Help.Ansi.ON.string("@|green 3.|@ @|blue add-contact |@"));
+			System.out.println(CommandLine.Help.Ansi.ON.string("@|green 4.|@ @|blue list-contact |@"));
+			System.out.println(CommandLine.Help.Ansi.ON.string("@|red 0. quit |@"));
+			System.out.print(CommandLine.Help.Ansi.ON.string("\n @|magenta Choose a sub command : |@"));
 			String input = scanner.nextLine().trim();
 
 			if (input.equalsIgnoreCase("quit") || input.equals("0") || input.equalsIgnoreCase("exit")) {

@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import picocli.CommandLine;
 
+import java.io.PrintWriter;
 import java.util.List;
+import java.util.Scanner;
 
 @CommandLine.Command(name = "list-contact", description = "Display the contact list")
 @Component
@@ -22,19 +24,45 @@ public class ListContactCommand implements Runnable {
     @Autowired
     private ContactService contactService;
 
+
     @Override
     public void run() {
+
+            Scanner scanner = new Scanner(System.in);
+            System.out.print(CommandLine.Help.Ansi.ON.string("@|magenta page number: (0 by default) |@"));
+            String pageInput = scanner.nextLine();
+            if (!pageInput.trim().isEmpty()) {
+                page = Integer.parseInt(pageInput.trim());
+            }
+            System.out.print(CommandLine.Help.Ansi.ON.string("@|magenta page size: (20 by default) |@"));
+            String sizeInput = scanner.nextLine();
+            if (!sizeInput.trim().isEmpty()) {
+                size = Integer.parseInt(sizeInput.trim());
+            }
+
         ContactPage contactPage = contactService.getContactPage(page, size);
-        List<Contact> contacts = contactService.getContact(page, size);
-        System.out.println("Liste des contacts (page " + page + ", taille " + size + ") :");        for (Contact contact : contacts) {
-            System.out.println("ID: " + contact.getId());
-            System.out.println("Nom: " + contact.getLastName());
-            System.out.println("Prénom: " + contact.getFirstName());
-            System.out.println("Email: " + contact.getEmail());
-            System.out.println("Company name: " + contact.getCompanyName());
-            System.out.println("-------------------------");
+
+        if (contactPage == null) {
+            System.out.println(CommandLine.Help.Ansi.ON.string("@|red no data for this page. |@"));
+            return;
         }
-        System.out.println("Total contacts : " + contactPage.getTotalElements());
-        System.out.println("Page : " + contactPage.getPageable().getPageNumber() + ", sur : " + contactPage.getTotalPages());
+
+        List<Contact> contacts = contactService.getContact(page, size);
+
+        System.out.println(CommandLine.Help.Ansi.ON.string("@|yellow ============================== |@"));
+        System.out.println(CommandLine.Help.Ansi.ON.string("@|yellow   Contact list (page " + page + ", size " + size + ") : |@"));
+        System.out.println(CommandLine.Help.Ansi.ON.string("@|yellow ============================== |@"));
+        for (Contact contact : contacts) {
+            System.out.println(CommandLine.Help.Ansi.ON.string("@|green ID: |@ @|blue " + contact.getId() + " |@"));
+            System.out.println(CommandLine.Help.Ansi.ON.string("@|green Lastname: |@ @|blue " + contact.getLastName() + " |@"));
+            System.out.println(CommandLine.Help.Ansi.ON.string("@|green Firstname: |@ @|blue " + contact.getFirstName() + " |@"));
+            System.out.println(CommandLine.Help.Ansi.ON.string("@|green Email: |@ @|blue " + contact.getEmail() + " |@"));
+            System.out.println(CommandLine.Help.Ansi.ON.string("@|green Company name: |@ @|blue " + contact.getCompanyName() + " |@"));
+            System.out.println(CommandLine.Help.Ansi.ON.string("@|Yellow ------------------------- |@"));
+        }
+        System.out.println(CommandLine.Help.Ansi.ON.string("@|green Total contacts: |@ @|blue " + contactPage.getTotalElements() + " |@"));
+        System.out.println(CommandLine.Help.Ansi.ON.string("@|green Page: |@ @|blue " + contactPage.getPageable().getPageNumber()  + " |@"));
+        System.out.println(CommandLine.Help.Ansi.ON.string("@|green Total page: |@ @|blue " + contactPage.getTotalPages() + " |@"));
+
     }
 }
