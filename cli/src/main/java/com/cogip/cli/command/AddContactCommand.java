@@ -42,7 +42,7 @@ public class AddContactCommand implements Runnable {
         }
         System.out.println("Sélectionnez le numéro de la société du contact :");
         for (int i = 0; i < companies.size(); i++) {
-            System.out.printf("- " + i + 1 + " : " + companies.get(i).getName());
+            System.out.println("- " + (i + 1) + " : " + companies.get(i).getName());
         }
         int choice = -1;
         while (choice < 1 || choice > companies.size()) {
@@ -69,7 +69,7 @@ public class AddContactCommand implements Runnable {
 
 
         Contact created = contactService.addContact(contact);
-        log.info("Contact ajouté : {}", contact);
+        log.info("Contact ajouté : {}", created);
     }
 
 }
