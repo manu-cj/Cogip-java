@@ -17,6 +17,7 @@ public class AddCompanyCommand implements Runnable {
     private CompanyService companyService;
     private String name;
     private String vatNumber;
+    private String type;
 
 
     @Override
@@ -38,6 +39,28 @@ public class AddCompanyCommand implements Runnable {
                 System.out.print("Numéro de TVA : ");
                 if (scanner == null) scanner = new Scanner(System.in);
                 vatNumber = scanner.nextLine();
+            }
+        }
+
+        if (type == null) {
+            String[] validTypes = {"CLIENT", "PROVIDER"};
+
+            System.out.println("Type de société possible : CLIENT, PROVIDER");
+            System.out.print("Type de société : ");
+            if (scanner == null) scanner = new Scanner(System.in);
+            type = scanner.nextLine().trim().toUpperCase();
+
+            boolean isValid = false;
+            for (String validType : validTypes) {
+                if (validType.equals(type)) {
+                    isValid = true;
+                    break;
+                }
+            }
+
+            if (!isValid) {
+                System.out.println("Type inconnu. Valeur par défaut : CLIENT");
+                type = "CLIENT";
             }
         }
 
