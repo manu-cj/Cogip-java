@@ -53,16 +53,16 @@ public class ListContactCommand implements Runnable {
         System.out.println(CommandLine.Help.Ansi.ON.string("@|yellow   Contact list (page " + page + ", size " + size + ") : |@"));
         System.out.println(CommandLine.Help.Ansi.ON.string("@|yellow ============================== |@"));
         for (Contact contact : contacts) {
-            System.out.println(CommandLine.Help.Ansi.ON.string("@|green ID: |@ @|blue " + contact.getId() + " |@"));
-            System.out.println(CommandLine.Help.Ansi.ON.string("@|green Lastname: |@ @|blue " + contact.getLastName() + " |@"));
-            System.out.println(CommandLine.Help.Ansi.ON.string("@|green Firstname: |@ @|blue " + contact.getFirstName() + " |@"));
-            System.out.println(CommandLine.Help.Ansi.ON.string("@|green Email: |@ @|blue " + contact.getEmail() + " |@"));
-            System.out.println(CommandLine.Help.Ansi.ON.string("@|green Company name: |@ @|blue " + contact.getCompanyName() + " |@"));
+            System.out.println(CommandLine.Help.Ansi.ON.string("@|green Id: |@ @|cyan " + contact.getId() + " |@"));
+            System.out.println(CommandLine.Help.Ansi.ON.string("@|green Lastname: |@ @|cyan " + contact.getLastName() + " |@"));
+            System.out.println(CommandLine.Help.Ansi.ON.string("@|green Firstname: |@ @|cyan " + contact.getFirstName() + " |@"));
+            System.out.println(CommandLine.Help.Ansi.ON.string("@|green Email: |@ @|cyan " + contact.getEmail() + " |@"));
+            System.out.println(CommandLine.Help.Ansi.ON.string("@|green Company name: |@ @|cyan " + contact.getCompanyName() + " |@"));
             System.out.println(CommandLine.Help.Ansi.ON.string("@|Yellow ------------------------- |@"));
         }
-        System.out.println(CommandLine.Help.Ansi.ON.string("@|green Total contacts: |@ @|blue " + contactPage.getTotalElements() + " |@"));
-        System.out.println(CommandLine.Help.Ansi.ON.string("@|green Page: |@ @|blue " + contactPage.getPageable().getPageNumber()  + " |@"));
-        System.out.println(CommandLine.Help.Ansi.ON.string("@|green Total page: |@ @|blue " + contactPage.getTotalPages() + " |@"));
+        System.out.println(CommandLine.Help.Ansi.ON.string("@|green Total contacts: |@ @|cyan " + contactPage.getTotalElements() + " |@"));
+        System.out.println(CommandLine.Help.Ansi.ON.string("@|green Page: |@ @|cyan " + contactPage.getPageable().getPageNumber()  + " |@"));
+        System.out.println(CommandLine.Help.Ansi.ON.string("@|green Total page: |@ @|cyan " + contactPage.getTotalPages() + " |@"));
 
     }
 }
