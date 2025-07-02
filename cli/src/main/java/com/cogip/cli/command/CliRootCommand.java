@@ -14,9 +14,12 @@ import picocli.CommandLine;
 
                 // Contact
                 AddContactCommand.class,
-                ListContactCommand.class
+                ListContactCommand.class,
 
-                // Ajoute ici d'autres commandes, ex: ListCompanyCommand.class
+                //Invoice
+                AddInvoiceCommand.class,
+                ListInvoiceCommand.class
+
         }
 )
 @Component
@@ -29,9 +32,13 @@ public class CliRootCommand implements Runnable {
     public AddContactCommand addContactCommand;
     @Autowired
     public ListContactCommand listContactCommand;
+    @Autowired
+    public AddInvoiceCommand addInvoiceCommand;
+    @Autowired
+    public ListInvoiceCommand listInvoiceCommand;
 
     @Override
     public void run() {
-        System.out.println("Utilise une sous-commande.");
+        System.out.println("Use a sub command.");
     }
 }

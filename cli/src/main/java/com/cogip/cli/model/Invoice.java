@@ -16,7 +16,9 @@ public class Invoice {
     private UUID id;
     private String number;
     private LocalDate date;
-    private Company company;
-    private Contact contact;
-    private CompanyType type;
+    private String companyName;
+    private String companyType;
+    private UUID contactId;
+    private String contactFirstName;
+    private String contactLastName;
 }
