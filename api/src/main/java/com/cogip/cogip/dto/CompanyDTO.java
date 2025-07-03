@@ -19,7 +19,7 @@ public class CompanyDTO {
         private String name;
         private String vatNumber;
         private CompanyType type;
-        private List<InvoiceSummaryDTO> invoices;
-        private List<ContactSummaryDTO> contacts;
+        private List<InvoiceDTO> invoices;
+        private List<ContactDTO> contacts;
 
 }
