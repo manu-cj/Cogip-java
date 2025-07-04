@@ -65,7 +65,7 @@ System.out.print(CommandLine.Help.Ansi.ON.string("@|magenta Nouveau nom (" + com
         String newVat = scanner.nextLine();
         if (newVat.isEmpty()) newVat = companyChoice.getVatNumber();
 
-        System.out.print(CommandLine.Help.Ansi.ON.string("@|magenta Nouveau type (" + companyChoice.getType() + ") : |@"));
+        System.out.print(CommandLine.Help.Ansi.ON.string("@|magenta Nouveau type (" + companyChoice.getType() + ") choose enter (CLIENT, PROVIDER) : |@"));
         String newType = scanner.nextLine();
         if (newType.isEmpty()) newType = companyChoice.getType();
 

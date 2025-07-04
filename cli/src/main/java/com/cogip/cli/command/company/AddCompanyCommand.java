@@ -67,10 +67,10 @@ public class AddCompanyCommand implements Runnable {
         Company company = Company.builder()
                 .name(name)
                 .vatNumber(vatNumber)
-                .type("CLIENT")
+                .type(type)
                 .build();
         Company created = companyService.addCompany(company);
 
-        log.info("Société ajoutée : {}", company);
+        log.info("Société ajoutée : {}", created);
     }
 }

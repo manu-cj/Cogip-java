@@ -79,12 +79,12 @@ public class UpdateContact implements Runnable{
         // Gets company
         System.out.println(CommandLine.Help.Ansi.ON.string("@|magenta Choose page number for display company list (default: 0) |@"));
         System.out.print(CommandLine.Help.Ansi.ON.string("@|magenta New company name (" + contactChoice.getCompanyName() + ") : |@"));
-        String contactPageChoice = scanner.nextLine();
-        if (contactPageChoice.isEmpty()) {
-            contactPageChoice = "0";
+        String companyPageChoice = scanner.nextLine();
+        if (companyPageChoice.isEmpty()) {
+            companyPageChoice = "0";
         }
         System.out.println(CommandLine.Help.Ansi.ON.string("@|magenta Liste des companies :|@"));
-        List<Company> companies = companyService.getCompanyPage(Integer.parseInt(contactPageChoice), 50).getContent();
+        List<Company> companies = companyService.getCompanyPage(Integer.parseInt(companyPageChoice), 50).getContent();
         for (int i = 0; i < companies.size(); i++) {
             System.out.println((i + 1) + " : " + companies.get(i).getName() + ")");
         }
