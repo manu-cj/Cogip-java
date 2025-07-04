@@ -9,6 +9,7 @@ import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class InvoiceService {
@@ -39,6 +40,16 @@ public class InvoiceService {
             String pagedUrl = url + "?page=" + page + "&size=" + size;
             return restTemplate.getForObject(pagedUrl, InvoicePage.class);
         } catch (HttpClientErrorException.NotFound e) {
+            return null;
+        }
+    }
+
+    public Invoice updateInvoice(Invoice invoice, UUID id) {
+        try {
+            restTemplate.put(url + "/" + id, invoice);
+            return invoice;
+        } catch (HttpClientErrorException | HttpServerErrorException e) {
+            System.out.println("Error when update the invoice : " + e.getStatusCode() + " - " + e.getResponseBodyAsString());
             return null;
         }
     }

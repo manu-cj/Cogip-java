@@ -1,4 +1,4 @@
-package com.cogip.cli.command;
+package com.cogip.cli.command.invoice;
 
 import com.cogip.cli.model.Company;
 import com.cogip.cli.model.Contact;

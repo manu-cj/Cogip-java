@@ -1,13 +1,11 @@
 package com.cogip.cli;
 
-import com.cogip.cli.command.AddCompanyCommand;
 import com.cogip.cli.command.CliRootCommand;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import picocli.CommandLine;
 
-import javax.naming.Context;
 import java.util.Scanner;
 
 
