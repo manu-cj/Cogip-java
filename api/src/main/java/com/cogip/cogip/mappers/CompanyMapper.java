@@ -14,10 +14,10 @@ public class CompanyMapper {
                 .vatNumber(company.getVatNumber())
                 .type(company.getType())
                 .invoices(company.getInvoices().stream()
-                        .map(InvoiceMapper::toSummaryDTO)
+                        .map(InvoiceMapper::toDTO)
                         .toList())
                 .contacts(company.getContacts().stream()
-                        .map(ContactMapper::toSummaryDTO)
+                        .map(ContactMapper::toDTO)
                         .toList())
                 .build();
     }

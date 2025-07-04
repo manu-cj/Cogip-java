@@ -2,6 +2,7 @@ package com.cogip.cli.service;
 
 import com.cogip.cli.model.Company;
 import com.cogip.cli.model.CompanyPage;
+import com.cogip.cli.model.ContactPage;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
@@ -29,6 +30,15 @@ public class CompanyService {
         } catch (HttpClientErrorException | HttpServerErrorException e) {
             // Gère l’erreur (log, message utilisateur, etc.)
             System.out.println("Erreur lors de l’ajout de la société : " + e.getStatusCode() + " - " + e.getResponseBodyAsString());
+            return null;
+        }
+    }
+
+    public CompanyPage getCompanyPage(int page, int size) {
+        try {
+            String pagedUrl = url + "?page=" + page + "&size=" + size;
+            return restTemplate.getForObject(pagedUrl, CompanyPage.class);
+        } catch (HttpClientErrorException.NotFound e) {
             return null;
         }
     }

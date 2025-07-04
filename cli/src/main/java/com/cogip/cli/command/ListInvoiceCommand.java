@@ -1,7 +1,6 @@
 package com.cogip.cli.command;
 
 import com.cogip.cli.model.InvoicePage;
-import com.cogip.cli.service.ContactService;
 import com.cogip.cli.service.InvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -61,6 +60,9 @@ public class ListInvoiceCommand implements Runnable{
             System.out.println(CommandLine.Help.Ansi.ON.string(
                     "@|green ------------------------------ |@"));
         });
+        System.out.println(CommandLine.Help.Ansi.ON.string("@|green Total contacts: |@ @|cyan " + invoicePage.getTotalElements() + " |@"));
+        System.out.println(CommandLine.Help.Ansi.ON.string("@|green Page: |@ @|cyan " + invoicePage.getPageable().getPageNumber()  + " |@"));
+        System.out.println(CommandLine.Help.Ansi.ON.string("@|green Total page: |@ @|cyan " + invoicePage.getTotalPages() + " |@"));
 
     }
 
