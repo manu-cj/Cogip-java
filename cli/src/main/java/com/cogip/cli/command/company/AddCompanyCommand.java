@@ -1,4 +1,4 @@
-package com.cogip.cli.command;
+package com.cogip.cli.command.company;
 
 import com.cogip.cli.model.Company;
 import com.cogip.cli.service.CompanyService;
@@ -9,7 +9,7 @@ import picocli.CommandLine;
 
 import java.util.Scanner;
 
-@CommandLine.Command(name = "add-company", description = "Ajoute une société")
+@CommandLine.Command(name = "add-company", description = "Add company")
 @Slf4j
 @Component
 public class AddCompanyCommand implements Runnable {
@@ -67,10 +67,10 @@ public class AddCompanyCommand implements Runnable {
         Company company = Company.builder()
                 .name(name)
                 .vatNumber(vatNumber)
-                .type("CLIENT")
+                .type(type)
                 .build();
         Company created = companyService.addCompany(company);
 
-        log.info("Société ajoutée : {}", company);
+        log.info("Société ajoutée : {}", created);
     }
 }

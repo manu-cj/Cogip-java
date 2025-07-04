@@ -1,4 +1,4 @@
-package com.cogip.cli.command;
+package com.cogip.cli.command.invoice;
 
 import com.cogip.cli.model.InvoicePage;
 import com.cogip.cli.service.InvoiceService;

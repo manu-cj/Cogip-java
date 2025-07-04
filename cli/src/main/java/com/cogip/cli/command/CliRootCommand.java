@@ -1,5 +1,15 @@
 package com.cogip.cli.command;
 
+import com.cogip.cli.command.company.AddCompanyCommand;
+import com.cogip.cli.command.company.CompanyCommand;
+import com.cogip.cli.command.company.ListCompanyCommand;
+import com.cogip.cli.command.contact.AddContactCommand;
+import com.cogip.cli.command.contact.ContactCommand;
+import com.cogip.cli.command.contact.ListContactCommand;
+import com.cogip.cli.command.contact.UpdateContact;
+import com.cogip.cli.command.invoice.AddInvoiceCommand;
+import com.cogip.cli.command.invoice.InvoiceCommand;
+import com.cogip.cli.command.invoice.ListInvoiceCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import picocli.CommandLine;
@@ -45,6 +55,7 @@ public class CliRootCommand implements Runnable {
     public AddInvoiceCommand addInvoiceCommand;
     @Autowired
     public ListInvoiceCommand listInvoiceCommand;
+
 
     @Override
     public void run() {

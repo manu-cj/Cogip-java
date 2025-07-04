@@ -1,4 +1,4 @@
-package com.cogip.cli.command;
+package com.cogip.cli.command.contact;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -21,6 +21,7 @@ public class ContactCommand implements Runnable {
             System.out.println(CommandLine.Help.Ansi.ON.string("@|yellow === |@ @|green Contact |@ @|yellow === |@"));
             System.out.println(CommandLine.Help.Ansi.ON.string("@|blue 1. |@ @|yellow list |@"));
             System.out.println(CommandLine.Help.Ansi.ON.string("@|blue 2. |@ @|yellow add |@"));
+            System.out.println(CommandLine.Help.Ansi.ON.string("@|blue 3. |@ @|yellow update |@"));
             System.out.println(CommandLine.Help.Ansi.ON.string("@|blue 0. |@ @|red back |@"));
             System.out.println(CommandLine.Help.Ansi.ON.string("@|magenta Enter a sub command :  |@"));
             String input = scanner.nextLine().trim();
@@ -30,7 +31,10 @@ public class ContactCommand implements Runnable {
                 context.getBean(ListContactCommand.class).run();
             } else if (input.equals("add")) {
                 context.getBean(AddContactCommand.class).run();
-            } else {
+            } else if (input.equals("update")) {
+                context.getBean(UpdateContact.class).run();
+            }
+            else {
                 System.out.println(CommandLine.Help.Ansi.ON.string("@|red Choose invalide. |@"));
             }
         }
