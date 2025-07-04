@@ -1,4 +1,4 @@
-package com.cogip.cli.command;
+package com.cogip.cli.command.company;
 
 import com.cogip.cli.model.*;
 import com.cogip.cli.service.CompanyService;
@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import picocli.CommandLine;
 
-import java.io.PrintWriter;
-import java.util.List;
 import java.util.Scanner;
 
 @CommandLine.Command(name = "list-company", description = "Display the company list")

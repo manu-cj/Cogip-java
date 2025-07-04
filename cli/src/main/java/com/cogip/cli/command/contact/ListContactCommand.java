@@ -1,4 +1,4 @@
-package com.cogip.cli.command;
+package com.cogip.cli.command.contact;
 
 import com.cogip.cli.model.Contact;
 import com.cogip.cli.model.ContactPage;

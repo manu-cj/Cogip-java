@@ -1,6 +1,5 @@
-package com.cogip.cli.command;
+package com.cogip.cli.command.contact;
 
-import com.cogip.cli.DTO.ContactRequest;
 import com.cogip.cli.model.Company;
 import com.cogip.cli.model.Contact;
 import com.cogip.cli.service.CompanyService;

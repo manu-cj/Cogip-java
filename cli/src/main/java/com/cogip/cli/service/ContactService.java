@@ -8,6 +8,7 @@ import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class ContactService {
@@ -38,6 +39,16 @@ public class ContactService {
             String pagedUrl = url + "?page=" + page + "&size=" + size;
             return restTemplate.getForObject(pagedUrl, ContactPage.class);
         } catch (HttpClientErrorException.NotFound e) {
+            return null;
+        }
+    }
+
+    public Contact updateContact(Contact contact, UUID id) {
+        try {
+            restTemplate.put(url + "/" + id, contact);
+            return contact;
+        } catch (HttpClientErrorException | HttpServerErrorException e) {
+            System.out.println("Error when update the contact : " + e.getStatusCode() + " - " + e.getResponseBodyAsString());
             return null;
         }
     }
