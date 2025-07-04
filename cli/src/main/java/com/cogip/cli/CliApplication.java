@@ -26,18 +26,15 @@ public class CliApplication {
 			System.out.println(CommandLine.Help.Ansi.ON.string("@|yellow ==============================|@"));
 			System.out.println(CommandLine.Help.Ansi.ON.string("@|yellow           COGIP CLI |@"));
 			System.out.println(CommandLine.Help.Ansi.ON.string("@|yellow ==============================|@"));
-			System.out.println(CommandLine.Help.Ansi.ON.string("@|green 1.|@ @|blue add-company |@"));
-			System.out.println(CommandLine.Help.Ansi.ON.string("@|green 2.|@ @|blue list-company |@"));
-			System.out.println(CommandLine.Help.Ansi.ON.string("@|green 3.|@ @|blue add-contact |@"));
-			System.out.println(CommandLine.Help.Ansi.ON.string("@|green 4.|@ @|blue list-contact |@"));
-			System.out.println(CommandLine.Help.Ansi.ON.string("@|green 5.|@ @|blue add-invoice |@"));
-			System.out.println(CommandLine.Help.Ansi.ON.string("@|green 6.|@ @|blue list-invoice |@"));
+			System.out.println(CommandLine.Help.Ansi.ON.string("@|green 1.|@ @|blue company |@"));
+			System.out.println(CommandLine.Help.Ansi.ON.string("@|green 2.|@ @|blue contact |@"));
+			System.out.println(CommandLine.Help.Ansi.ON.string("@|green 3.|@ @|blue invoice |@"));
 			System.out.println(CommandLine.Help.Ansi.ON.string("@|red 0. quit |@"));
 			System.out.print(CommandLine.Help.Ansi.ON.string("\n @|magenta Choose a sub command : |@"));
 			String input = scanner.nextLine().trim();
 
 			if (input.equalsIgnoreCase("quit") || input.equals("0") || input.equalsIgnoreCase("exit")) {
-				System.out.println("Au revoir !");
+				System.out.println("Goodbye !");
 				break;
 			}
 

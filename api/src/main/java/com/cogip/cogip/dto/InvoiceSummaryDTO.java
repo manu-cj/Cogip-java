@@ -14,6 +14,9 @@ import java.time.LocalDate;
 public class InvoiceSummaryDTO {
     private String number;
     private LocalDate date;
+    private String contactLastname;
+    private String contactFirstname;
+
 }
 
 
