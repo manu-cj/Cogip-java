@@ -125,7 +125,7 @@ public class ContactService {
         Contact contact = contactRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Contact not found"));
 
-        companyRepository.deleteById(id);
+        contactRepository.deleteById(id);
         return ContactMapper.toDTO(contact);
     }
 }
