@@ -11,15 +11,12 @@ import picocli.CommandLine;
 import java.util.Scanner;
 import java.util.UUID;
 
-@CommandLine.Command(name = "update-company", description = "Update company")
+@CommandLine.Command(name = "delete-company", description = "delete company")
 @Slf4j
 @Component
-public class UpdateCompanyCommand implements Runnable{
-
+public class DeleteCompanyCommand implements Runnable{
     @Autowired
     private CompanyService companyService;
-
-
 
     @Override
     public void run() {
@@ -35,6 +32,7 @@ public class UpdateCompanyCommand implements Runnable{
             return;
         }
 
+        //company list
         for (int i = 0; i < companyPages.getContent().size(); i++ ) {
             System.out.println(CommandLine.Help.Ansi.ON.string("@|magenta - " + (i + 1) + " :|@ @|blue " + companyPages.getContent().get(i).getName() + "|@"));
         }
@@ -55,29 +53,15 @@ public class UpdateCompanyCommand implements Runnable{
 
         UUID companyId = companyChoice.getId();
 
+        System.out.println(CommandLine.Help.Ansi.ON.string("@|magenta Do you really want to delete the company (" + companyChoice.getName() + ") ? 'YES' for confirm 'No' for cancel : |@"));
+        String delete = scanner.nextLine();
 
-        // Ask for new fields (leave empty to keep the old value)
-        System.out.print(CommandLine.Help.Ansi.ON.string("@|magenta New name (" + companyChoice.getName() + ") : |@"));
-        String newName = scanner.nextLine();
-        if (newName.isEmpty()) newName = companyChoice.getName();
-
-        System.out.print(CommandLine.Help.Ansi.ON.string("@|magenta New VAT number (" + companyChoice.getVatNumber() + ") : |@"));
-        String newVat = scanner.nextLine();
-        if (newVat.isEmpty()) newVat = companyChoice.getVatNumber();
-
-        System.out.print(CommandLine.Help.Ansi.ON.string("@|magenta New type (" + companyChoice.getType() + ") choose enter (CLIENT, PROVIDER) : |@"));
-        String newType = scanner.nextLine();
-        if (newType.isEmpty()) newType = companyChoice.getType();
-
-        Company updatedCompany = Company.builder()
-                .id(companyChoice.getId())
-                .name(newName)
-                .vatNumber(newVat)
-                .type(newType)
-                .build();
-
-        companyService.updateCompany(updatedCompany, companyId);
-
-        System.out.println(CommandLine.Help.Ansi.ON.string("@|green Company updated successfully!|@"));
+        if ("YES".equalsIgnoreCase(delete.trim())) {
+            companyService.deleteCompany(companyChoice, companyId);
+            System.out.println(CommandLine.Help.Ansi.ON.string("@|green Company deleted with success !|@"));
+        } else {
+            System.out.println(CommandLine.Help.Ansi.ON.string("@|yellow delete canceled.|@"));
+        }
     }
+
 }

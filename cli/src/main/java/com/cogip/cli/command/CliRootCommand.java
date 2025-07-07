@@ -6,7 +6,6 @@ import com.cogip.cli.command.company.ListCompanyCommand;
 import com.cogip.cli.command.contact.AddContactCommand;
 import com.cogip.cli.command.contact.ContactCommand;
 import com.cogip.cli.command.contact.ListContactCommand;
-import com.cogip.cli.command.contact.UpdateContact;
 import com.cogip.cli.command.invoice.AddInvoiceCommand;
 import com.cogip.cli.command.invoice.InvoiceCommand;
 import com.cogip.cli.command.invoice.ListInvoiceCommand;
@@ -16,7 +15,7 @@ import picocli.CommandLine;
 
 @CommandLine.Command(
         name = "cogip-cli",
-        description = "CLI COGIP",
+        description = "COGIP CLI",
         subcommands = {
                 // Company
                 CompanyCommand.class,
