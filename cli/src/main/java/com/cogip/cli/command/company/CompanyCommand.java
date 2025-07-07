@@ -21,9 +21,10 @@ public class CompanyCommand implements Runnable {
             System.out.println(CommandLine.Help.Ansi.ON.string("@|yellow === |@ @|magenta Company |@ @|yellow === |@"));
             System.out.println(CommandLine.Help.Ansi.ON.string("@|blue 1. |@ @|yellow list |@"));
             System.out.println(CommandLine.Help.Ansi.ON.string("@|blue 2. |@ @|yellow add |@"));
-            System.out.println(CommandLine.Help.Ansi.ON.string("@|blue 2. |@ @|yellow update |@"));
+            System.out.println(CommandLine.Help.Ansi.ON.string("@|blue 3. |@ @|yellow update |@"));
+            System.out.println(CommandLine.Help.Ansi.ON.string("@|blue 4. |@ @|yellow delete |@"));
             System.out.println(CommandLine.Help.Ansi.ON.string("@|blue 0. |@ @|red back |@"));
-            System.out.println(CommandLine.Help.Ansi.ON.string("@|magenta Enter a sub command :  |@"));
+            System.out.println(CommandLine.Help.Ansi.ON.string("@|magenta Enter a sub command:  |@"));
             String input = scanner.nextLine().trim();
 
             if (input.equals("back")) break;
@@ -31,11 +32,12 @@ public class CompanyCommand implements Runnable {
                 context.getBean(ListCompanyCommand.class).run();
             } else if (input.equals("add")) {
                 context.getBean(AddCompanyCommand.class).run();
-            }else if (input.equals("update")) {
+            } else if (input.equals("update")) {
                 context.getBean(UpdateCompanyCommand.class).run();
-            }
-            else {
-                System.out.println(CommandLine.Help.Ansi.ON.string("@|red Choose invalide. |@"));
+            } else if (input.equals("delete")) {
+                context.getBean(DeleteCompanyCommand.class).run();
+            } else {
+                System.out.println(CommandLine.Help.Ansi.ON.string("@|red Invalid choice. |@"));
             }
         }
     }

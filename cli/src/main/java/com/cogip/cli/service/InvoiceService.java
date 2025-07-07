@@ -1,5 +1,6 @@
 package com.cogip.cli.service;
 
+import com.cogip.cli.model.Contact;
 import com.cogip.cli.model.ContactPage;
 import com.cogip.cli.model.Invoice;
 import com.cogip.cli.model.InvoicePage;
@@ -50,6 +51,16 @@ public class InvoiceService {
             return invoice;
         } catch (HttpClientErrorException | HttpServerErrorException e) {
             System.out.println("Error when update the invoice : " + e.getStatusCode() + " - " + e.getResponseBodyAsString());
+            return null;
+        }
+    }
+
+    public Invoice deleteInvoice(Invoice invoice, UUID id) {
+        try {
+            restTemplate.delete(url + "/" + id, invoice);
+            return invoice;
+        } catch (HttpClientErrorException | HttpServerErrorException e) {
+            System.out.println("Error when delete the invoice : " + e.getStatusCode() + " - " + e.getResponseBodyAsString());
             return null;
         }
     }

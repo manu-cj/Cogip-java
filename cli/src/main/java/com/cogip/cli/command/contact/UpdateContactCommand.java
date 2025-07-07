@@ -1,7 +1,6 @@
 package com.cogip.cli.command.contact;
 
 import com.cogip.cli.model.Company;
-import com.cogip.cli.model.CompanyPage;
 import com.cogip.cli.model.Contact;
 import com.cogip.cli.model.ContactPage;
 import com.cogip.cli.service.CompanyService;
@@ -18,7 +17,7 @@ import java.util.UUID;
 @CommandLine.Command(name = "update-contact", description = "Update contact")
 @Slf4j
 @Component
-public class UpdateContact implements Runnable{
+public class UpdateContactCommand implements Runnable{
     @Autowired
     private ContactService contactService;
     @Autowired
@@ -83,12 +82,12 @@ public class UpdateContact implements Runnable{
         if (companyPageChoice.isEmpty()) {
             companyPageChoice = "0";
         }
-        System.out.println(CommandLine.Help.Ansi.ON.string("@|magenta Liste des companies :|@"));
+        System.out.println(CommandLine.Help.Ansi.ON.string("@|magenta List of companies:|@"));
         List<Company> companies = companyService.getCompanyPage(Integer.parseInt(companyPageChoice), 50).getContent();
         for (int i = 0; i < companies.size(); i++) {
             System.out.println((i + 1) + " : " + companies.get(i).getName() + ")");
         }
-        System.out.print(CommandLine.Help.Ansi.ON.string("@|magenta Choisis une company (numéro, vide pour garder " + contactChoice.getCompanyName() + ") : |@"));
+        System.out.print(CommandLine.Help.Ansi.ON.string("@|magenta Choose a company (number, empty to keep " + contactChoice.getCompanyName() + ") : |@"));
         String companyInput = scanner.nextLine();
 
         Company selectedCompany = contactChoice.getCompanyName() != null ?
@@ -99,14 +98,13 @@ public class UpdateContact implements Runnable{
                 if (companyChoice >= 1 && companyChoice <= companies.size()) {
                     selectedCompany = companies.get(companyChoice - 1);
                 } else {
-                    System.out.println(CommandLine.Help.Ansi.ON.string("@|red Choix invalide, ancienne société conservée.|@"));
+                    System.out.println(CommandLine.Help.Ansi.ON.string("@|red Invalid choice, previous company kept.|@"));
                 }
             } catch (NumberFormatException e) {
-                System.out.println(CommandLine.Help.Ansi.ON.string("@|red Entrée invalide, ancienne société conservée.|@"));
+                System.out.println(CommandLine.Help.Ansi.ON.string("@|red Invalid input, previous company kept.|@"));
             }
         }
 
-// Construction de l'objet Contact mis à jour
         Contact updatedContact = Contact.builder()
                 .id(contactChoice.getId())
                 .firstName(newFirstname)
@@ -117,7 +115,7 @@ public class UpdateContact implements Runnable{
 
         contactService.updateContact(updatedContact, contactId);
 
-        System.out.println(CommandLine.Help.Ansi.ON.string("@|green Contact mis à jour avec succès !|@"));
+        System.out.println(CommandLine.Help.Ansi.ON.string("@|green Contact updated successfully!|@"));
 
     }
 }

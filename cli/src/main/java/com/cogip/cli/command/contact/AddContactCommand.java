@@ -12,7 +12,7 @@ import picocli.CommandLine;
 import java.util.List;
 import java.util.Scanner;
 
-@CommandLine.Command(name = "add-contact", description = "Ajoute un contact")
+@CommandLine.Command(name = "add-contact", description = "Add a contact")
 @Slf4j
 @Component
 public class AddContactCommand implements Runnable {
@@ -25,27 +25,27 @@ public class AddContactCommand implements Runnable {
     public void run() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Prénom du contact : ");
+        System.out.print("Contact first name: ");
         String firstName = scanner.nextLine();
 
-        System.out.print("Nom du contact : ");
+        System.out.print("Contact last name: ");
         String lastName = scanner.nextLine();
 
-        System.out.print("Email du contact : ");
+        System.out.print("Contact email: ");
         String email = scanner.nextLine();
 
         List<Company> companies = companyService.getCompanies();
         if (companies.isEmpty()) {
-            System.out.println("Aucune société trouvée. Veuillez d'abord en créer une.");
+            System.out.println("No company found. Please create one first.");
             return;
         }
-        System.out.println("Sélectionnez le numéro de la société du contact :");
+        System.out.println("Select the number of the contact's company:");
         for (int i = 0; i < companies.size(); i++) {
             System.out.println("- " + (i + 1) + " : " + companies.get(i).getName());
         }
         int choice = -1;
         while (choice < 1 || choice > companies.size()) {
-            System.out.print("Votre choix : ");
+            System.out.print("Your choice: ");
             String input = scanner.nextLine();
             try {
                 choice = Integer.parseInt(input);
@@ -53,7 +53,7 @@ public class AddContactCommand implements Runnable {
                 choice = -1;
             }
             if (choice < 1 || choice > companies.size()) {
-                System.out.println("Choix invalide.");
+                System.out.println("Invalid choice.");
             }
         }
         Company company = companies.get(choice - 1);
@@ -68,7 +68,7 @@ public class AddContactCommand implements Runnable {
 
 
         Contact created = contactService.addContact(contact);
-        log.info("Contact ajouté : {}", created);
+        log.info("Contact added: {}", created);
     }
 
 }

@@ -35,6 +35,10 @@ public class ListInvoiceCommand implements Runnable{
         }
 
         InvoicePage invoicePage = invoiceService.getInvoicePage(page, size);
+        if (invoicePage == null) {
+            System.out.println(CommandLine.Help.Ansi.ON.string("@|red   no data for this page.  |@"));
+            return;
+        }
 
         System.out.println(CommandLine.Help.Ansi.ON.string("@|yellow ============================== |@"));
         System.out.println(CommandLine.Help.Ansi.ON.string("@|yellow   Invoice list (page " + page + ", size " + size + ") : |@"));
