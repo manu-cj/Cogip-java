@@ -1,5 +1,6 @@
 package com.cogip.cli.service;
 
+import com.cogip.cli.model.Company;
 import com.cogip.cli.model.Contact;
 import com.cogip.cli.model.ContactPage;
 import org.springframework.stereotype.Service;
@@ -49,6 +50,16 @@ public class ContactService {
             return contact;
         } catch (HttpClientErrorException | HttpServerErrorException e) {
             System.out.println("Error when update the contact : " + e.getStatusCode() + " - " + e.getResponseBodyAsString());
+            return null;
+        }
+    }
+
+    public Contact deleteContact(Contact contact, UUID id) {
+        try {
+            restTemplate.delete(url + "/" + id, contact);
+            return contact;
+        } catch (HttpClientErrorException | HttpServerErrorException e) {
+            System.out.println("Error when delete the contact : " + e.getStatusCode() + " - " + e.getResponseBodyAsString());
             return null;
         }
     }

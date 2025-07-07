@@ -21,9 +21,10 @@ public class InvoiceCommand implements Runnable {
             System.out.println(CommandLine.Help.Ansi.ON.string("@|yellow === |@ @|cyan Invoice |@ @|yellow === |@"));
             System.out.println(CommandLine.Help.Ansi.ON.string("@|blue 1. |@ @|yellow list |@"));
             System.out.println(CommandLine.Help.Ansi.ON.string("@|blue 2. |@ @|yellow add |@"));
-            System.out.println(CommandLine.Help.Ansi.ON.string("@|blue 2. |@ @|yellow update |@"));
+            System.out.println(CommandLine.Help.Ansi.ON.string("@|blue 3. |@ @|yellow update |@"));
+            System.out.println(CommandLine.Help.Ansi.ON.string("@|blue 4. |@ @|yellow delete |@"));
             System.out.println(CommandLine.Help.Ansi.ON.string("@|blue 0. |@ @|red back |@"));
-            System.out.println(CommandLine.Help.Ansi.ON.string("@|magenta Enter a sub command :  |@"));
+            System.out.println(CommandLine.Help.Ansi.ON.string("@|magenta Enter a sub command:  |@"));
             String input = scanner.nextLine().trim();
 
             if (input.equals("back")) break;
@@ -32,10 +33,11 @@ public class InvoiceCommand implements Runnable {
             } else if (input.equals("add")) {
                 context.getBean(AddInvoiceCommand.class).run();
             } else if (input.equals("update")) {
-                context.getBean(UpdateInvoice.class).run();
-            }
-            else {
-                System.out.println(CommandLine.Help.Ansi.ON.string("@|red Choose invalide. |@"));
+                context.getBean(UpdateInvoiceCommand.class).run();
+            } else if (input.equals("delete")) {
+                context.getBean(DeleteInvoiceCommand.class).run();
+            } else {
+                System.out.println(CommandLine.Help.Ansi.ON.string("@|red Invalid choice. |@"));
             }
         }
     }

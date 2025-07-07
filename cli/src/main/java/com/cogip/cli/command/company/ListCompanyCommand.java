@@ -35,6 +35,10 @@ public class ListCompanyCommand implements Runnable {
         }
 
         CompanyPage companyPage = companyService.getCompanyPage(page, size);
+        if (companyPage == null) {
+            System.out.println(CommandLine.Help.Ansi.ON.string("@|red   no data for this page.  |@"));
+            return;
+        }
 
         System.out.println(CommandLine.Help.Ansi.ON.string("@|yellow ============================== |@"));
         System.out.println(CommandLine.Help.Ansi.ON.string("@|yellow   Company list (page " + page + ", size " + size + ") : |@"));

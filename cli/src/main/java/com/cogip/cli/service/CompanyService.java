@@ -29,8 +29,8 @@ public class CompanyService {
         try {
             return restTemplate.postForObject(url, company, Company.class);
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            // Gère l’erreur (log, message utilisateur, etc.)
-            System.out.println("Erreur lors de l’ajout de la société : " + e.getStatusCode() + " - " + e.getResponseBodyAsString());
+            // Handle error (log, user message, etc.)
+            System.out.println("Error when adding the company: " + e.getStatusCode() + " - " + e.getResponseBodyAsString());
             return null;
         }
     }
@@ -50,6 +50,16 @@ public class CompanyService {
             return company;
         } catch (HttpClientErrorException | HttpServerErrorException e) {
             System.out.println("Error when update the company : " + e.getStatusCode() + " - " + e.getResponseBodyAsString());
+            return null;
+        }
+    }
+
+    public Company deleteCompany(Company company, UUID id) {
+        try {
+            restTemplate.delete(url + "/" + id, company);
+            return company;
+        } catch (HttpClientErrorException | HttpServerErrorException e) {
+            System.out.println("Error when delete the company : " + e.getStatusCode() + " - " + e.getResponseBodyAsString());
             return null;
         }
     }

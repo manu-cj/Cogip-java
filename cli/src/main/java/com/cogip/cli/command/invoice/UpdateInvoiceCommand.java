@@ -17,7 +17,7 @@ import java.util.UUID;
 @CommandLine.Command(name = "update-contact", description = "Update contact")
 @Slf4j
 @Component
-public class UpdateInvoice implements Runnable{
+public class UpdateInvoiceCommand implements Runnable{
     @Autowired
     private InvoiceService invoiceService;
     @Autowired
@@ -78,12 +78,12 @@ public class UpdateInvoice implements Runnable{
         if (companyPageChoice.isEmpty()) {
             companyPageChoice = "0";
         }
-        System.out.println(CommandLine.Help.Ansi.ON.string("@|magenta Liste des companies :|@"));
+        System.out.println(CommandLine.Help.Ansi.ON.string("@|magenta List of companies:|@"));
         List<Company> companies = companyService.getCompanyPage(Integer.parseInt(companyPageChoice), 50).getContent();
         for (int i = 0; i < companies.size(); i++) {
             System.out.println((i + 1) + " : " + companies.get(i).getName());
         }
-        System.out.print(CommandLine.Help.Ansi.ON.string("@|magenta Choisis une company (numéro, vide pour garder "
+        System.out.print(CommandLine.Help.Ansi.ON.string("@|magenta Choose a company (number, empty to keep "
                 + invoiceChoice.getCompanyName() + ") : |@"));
         String companyInput = scanner.nextLine();
 
@@ -95,10 +95,10 @@ public class UpdateInvoice implements Runnable{
                 if (companyChoice >= 1 && companyChoice <= companies.size()) {
                     selectedCompany = companies.get(companyChoice - 1);
                 } else {
-                    System.out.println(CommandLine.Help.Ansi.ON.string("@|red Choix invalide, ancienne société conservée.|@"));
+                    System.out.println(CommandLine.Help.Ansi.ON.string("@|red Invalid choice, previous company kept.|@"));
                 }
             } catch (NumberFormatException e) {
-                System.out.println(CommandLine.Help.Ansi.ON.string("@|red Entrée invalide, ancienne société conservée.|@"));
+                System.out.println(CommandLine.Help.Ansi.ON.string("@|red Invalid input, previous company kept.|@"));
             }
 
             // Gets contact
@@ -107,12 +107,12 @@ public class UpdateInvoice implements Runnable{
             if (contactPageChoice.isEmpty()) {
                 contactPageChoice = "0";
             }
-            System.out.println(CommandLine.Help.Ansi.ON.string("@|magenta Liste des contacts :|@"));
+            System.out.println(CommandLine.Help.Ansi.ON.string("@|magenta List of contacts:|@"));
             List<Contact> contacts = contactService.getContactPage(Integer.parseInt(contactPageChoice), 50).getContent();
             for (int i = 0; i < contacts.size(); i++) {
                 System.out.println((i + 1) + " : " + contacts.get(i).getFirstName() + " " + contacts.get(i).getLastName());
             }
-            System.out.print(CommandLine.Help.Ansi.ON.string("@|magenta Choisis une contacts (numéro, vide pour garder " + invoiceChoice.getContactFirstName() + " " + invoiceChoice.getContactLastName() + " ) : |@"));
+            System.out.print(CommandLine.Help.Ansi.ON.string("@|magenta Choose a contact (number, empty to keep " + invoiceChoice.getContactFirstName() + " " + invoiceChoice.getContactLastName() + " ) : |@"));
             String contactInput = scanner.nextLine();
 
             Contact selectedContact = invoiceChoice.getContactId() != null ?
@@ -123,10 +123,10 @@ public class UpdateInvoice implements Runnable{
                     if (companyChoice >= 1 && companyChoice <= contacts.size()) {
                         selectedContact = contacts.get(companyChoice - 1);
                     } else {
-                        System.out.println(CommandLine.Help.Ansi.ON.string("@|red Choix invalide, ancien contact conservée.|@"));
+                        System.out.println(CommandLine.Help.Ansi.ON.string("@|red Invalid choice, previous contact kept.|@"));
                     }
                 } catch (NumberFormatException e) {
-                    System.out.println(CommandLine.Help.Ansi.ON.string("@|red Entrée invalide, ancien contact conservée.|@"));
+                    System.out.println(CommandLine.Help.Ansi.ON.string("@|red Invalid input, previous contact kept.|@"));
                 }
             }
 
@@ -141,7 +141,7 @@ public class UpdateInvoice implements Runnable{
 
             invoiceService.updateInvoice(updatedInvoice, invoiceId);
 
-            System.out.println(CommandLine.Help.Ansi.ON.string("@|green Invoice mis à jour avec succès !|@"));
+            System.out.println(CommandLine.Help.Ansi.ON.string("@|green Invoice updated successfully!|@"));
         }
 
 
